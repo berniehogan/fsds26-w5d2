@@ -1,0 +1,38 @@
+[project]
+name = "llm-inference"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "bs4>=0.0.2",
+    "ipykernel>=7.4.0",
+    "lxml>=6.1.3",
+    "openai>=3.49.0",
+    "pandas>=3.1.1",
+    "py7zr>=1.1.4",
+    "scikit-learn>=1.9.1",
+    "scipy>=1.18.1",
+    "sentence-transformers>=6.2.0",
+    "torch>=2.14,<2.15",
+    "transformers>=5.22.2",
+]
+
+[project.scripts]
+llm-inference = "llm_inference:main"
+
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+environments = ["sys_platform == 'linux'"]
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu126" }]
+torchvision = [{ index = "pytorch-cu126" }]
